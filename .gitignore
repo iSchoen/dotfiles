@@ -1,0 +1,6 @@
+# Omarchy current theme (wallpapers, generated state)
+omarchy/.config/omarchy/current/
+
+# Neovim plugin state
+nvim/.config/nvim/plugin/
+nvim/.config/nvim/tmp/
