@@ -16,6 +16,7 @@ brightnessctl
 btop
 btrfs-progs
 chromium
+cider
 clang
 claude-code
 cups
@@ -91,6 +92,7 @@ linux-firmware
 linux-headers
 llvm
 localsend
+lua-language-server
 luarocks
 mako
 man-db
@@ -131,6 +133,7 @@ ripgrep
 rog-control-center
 ruby
 rust
+rust-analyzer
 satty
 sddm
 signal-desktop
@@ -139,6 +142,7 @@ slurp
 sof-firmware
 spotify
 starship
+steam
 stow
 sudo
 supergfxctl
