@@ -23,3 +23,5 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+. "/home/ischoen/.deno/env"
+source /home/ischoen/.local/share/bash-completion/completions/deno.bash
