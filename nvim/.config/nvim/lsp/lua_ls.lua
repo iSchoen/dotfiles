@@ -1,4 +1,4 @@
--- $ brew install lua-language-server
+-- $ sudo pacman -S lua-language-server
 
 return {
 	cmd = { "lua-language-server" },

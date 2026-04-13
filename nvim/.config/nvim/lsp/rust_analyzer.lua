@@ -1,4 +1,4 @@
--- $ brew install rust-analyzer
+-- $ sudo pacman -S rust-analyzer
 
 return {
 	cmd = { "rust-analyzer" },
