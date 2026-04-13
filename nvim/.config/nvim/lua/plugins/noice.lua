@@ -5,6 +5,9 @@ return {
 		"MunifTanjim/nui.nvim",
 	},
 	opts = {
+		messages = {
+			enabled = false,
+		},
 		lsp = {
 			-- Override markdown rendering so that blink.cmp and other plugins use Treesitter
 			override = {
