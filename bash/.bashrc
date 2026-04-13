@@ -25,3 +25,9 @@ esac
 # pnpm end
 . "/home/ischoen/.deno/env"
 source /home/ischoen/.local/share/bash-completion/completions/deno.bash
+
+# Re-init zoxide last so it hooks cd after everything else
+if command -v zoxide &> /dev/null; then
+  export _ZO_DOCTOR=0
+  eval "$(zoxide init bash)"
+fi
