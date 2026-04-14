@@ -1,2 +1,5 @@
 [tools]
-node = "25.9.0"
+bun = "latest"
+deno = "latest"
+node = "lts"
+pnpm = "latest"
