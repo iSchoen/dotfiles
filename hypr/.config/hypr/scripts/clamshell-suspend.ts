@@ -1,8 +1,9 @@
 #!/usr/bin/env bun
 /**
  * clamshell-suspend.ts
- * Listens for Hyprland monitor disconnect events.
- * If the lid is closed and no external monitors remain, suspends the system.
+ * Listens for Hyprland monitor events.
+ * - On monitor added: if lid is closed, disables internal display (clamshell mode).
+ * - On monitor removed: if lid is closed and no external monitors remain, suspends.
  */
 
 import { $ } from "bun";
@@ -34,6 +35,12 @@ async function hasExternalMonitors(): Promise<boolean> {
 	}
 }
 
+async function disableInternalDisplay(): Promise<void> {
+	if (await isLidClosed()) {
+		await $`hyprctl keyword monitor ${INTERNAL_DISPLAY}, disable`;
+	}
+}
+
 async function main(): Promise<void> {
 	const socketPath = getSocketPath();
 	let buf = "";
@@ -46,15 +53,18 @@ async function main(): Promise<void> {
 				const lines = buf.split("\n");
 				buf = lines.pop() ?? "";
 
-				for (const line of lines) {
-					if (line.trim().startsWith("monitorremoved")) {
-						setTimeout(async () => {
-							if ((await isLidClosed()) && !(await hasExternalMonitors())) {
-								await $`systemctl suspend`;
-							}
-						}, 1000);
+					for (const line of lines) {
+						const trimmed = line.trim();
+						if (trimmed.startsWith("monitoradded")) {
+							setTimeout(() => disableInternalDisplay(), 1000);
+						} else if (trimmed.startsWith("monitorremoved")) {
+							setTimeout(async () => {
+								if ((await isLidClosed()) && !(await hasExternalMonitors())) {
+									await $`systemctl suspend`;
+								}
+							}, 1000);
+						}
 					}
-				}
 			},
 			error(_socket, error) {
 				console.error("Socket error:", error);

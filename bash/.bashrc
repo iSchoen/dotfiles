@@ -10,6 +10,9 @@ source ~/.local/share/omarchy/default/bash/rc
 # Make an alias for invoking commands you use constantly
 # alias p='python'
 
+export MISE_DATA_DIR="$HOME/.local/share/mise"
+eval "$(mise activate bash)"
+
 # Re-init zoxide last so it hooks cd after everything else
 if command -v zoxide &> /dev/null; then
   export _ZO_DOCTOR=0
